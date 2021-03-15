@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<form action="#" th:action="@{/createform}" th:object="${user}" method = "post">
+	<table>
+		<tr>
+			<td>Name: </td>
+			<td><input type = "text" th:field = "*{Name}" /></td>
+			<td th:if="${#fields.hasErrors('Name')}" th:errors = "*{Name}">
+				Name Error</td>
+		</tr>
+		
+			<tr>
+			<td>Email: </td>
+			<td><input type = "text" th:field = "*{Email}" /></td>
+			<td th:if="${#fields.hasErrors('Email')}" th:errors = "*{Email}">
+				Email Error</td>
+		</tr>
+		
+		<tr>
+			<td>Password: </td>
+			<td><input type = "text" th:field = "*{Password}" /></td>
+			<td th:if="${#fields.hasErrors('Password')}" th:errors = "*{Password}">
+				Password Error</td>
+		</tr>
+		
+		<tr>
+			<td>Repeat Password: </td>
+			<td><input type = "text" th:field = "*{ConfPassword}" /></td>
+			<td th:if="${#fields.hasErrors('ConfPassword')}" th:errors = "*{ConfPassword}">
+				Second Password Error</td>
+		</tr>
+		
+		<tr><td> Gender: </td>
+		
+		<td>
+          <ul>
+             <li th:each="gender : ${genders}">
+             <input type="radio" th:field="*{Gender}" th:value="${gender}" /> 
+             <label th:for="${#ids.prev('Gender')}" th:text="${gender}">CMPS</label>
+             </li>
+         </ul>
+		<div th:if="${#fields.hasErrors('Gender')}" th:errors = "*{Gender}">
+				Second Password Error</div>
+				
+		</td>
+	
+		<tr>
+			<td><button type="submit">Submit</button></td><td></td>
+		</tr>
+		
+	</table>
+	</form>
+
+</body>
+</html>
